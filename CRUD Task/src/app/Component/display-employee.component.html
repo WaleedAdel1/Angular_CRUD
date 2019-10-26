@@ -1,0 +1,60 @@
+<div class="containerList">
+  <div class="row" style="text-align: center">
+    <div class="col-12">
+      <img [src]="employee.photoPath" class="imgOnDisplayList" alt="image">
+    </div>
+  </div>
+  <ul id="ulOnDilog">
+    <li>Name: <span>{{employee.name}}</span></li>
+    <li>Phone: <span>{{employee.phoneNumber}}</span></li>
+    <li>Email: <span>{{employee.email}}</span></li>
+  </ul>
+  <button (click)="showDialog = !showDialog" class="btn btn-primary optionsButton"><i class="fas fa-info"></i></button>
+  <button class="btn btn-success optionsButton" (click)="editEmployee()"><i class="fas fa-edit"></i></button>
+  <button type="button" class="btn btn-danger optionsButton" (click)="showDeleteDialog = !showDeleteDialog"><i
+      class="fas fa-trash-alt"></i></button>
+</div>
+
+
+
+<app-dialog-employee-details [(visible)]="!!showDialog">
+  <div class="containerDilaog" style="width: 90%">
+    <div class="row" style="text-align: center">
+      <div class="col-12">
+        <img [src]="employee.photoPath" class="imgOnDilaog" alt="image">
+      </div>
+    </div>
+    <ul id="ulOnDilog">
+      <li>Name: <span>{{employee.name}}</span></li>
+      <li>Pone Number: <span>{{employee.phoneNumber}}</span></li>
+      <li>Email: <span>{{employee.email}}</span></li>
+      <li>Gender: <span>{{employee.gender}}</span></li>
+      <li>Department: <span [ngSwitch]="employee.department">
+          <span *ngSwitchCase="1">Manager</span>
+          <span *ngSwitchCase="2">Team Leader</span>
+          <span *ngSwitchCase="3">Senior</span>
+          <span *ngSwitchCase="4">Junior</span>
+          <span *ngSwitchDefault>N/A</span>
+        </span>
+      </li>
+      <li>Date of Birth: <span>{{employee.dateOfBirth | date}}</span></li>
+      <li>Is Active: <span>{{employee.isActive}}</span></li>
+    </ul>
+  </div>
+  <button (click)="showDialog = !showDialog" class="btn btn-secondary">Close</button>
+</app-dialog-employee-details>
+
+
+
+<app-delete-dialog [(visible)]="!!showDeleteDialog">
+  <div class="containerDilaog2" style="width: 90%">
+    <div class="row" style="text-align: center">
+      <div class="col-12">
+        <h5>Are you sure you want to delete?</h5>
+        <button class="btn btn-danger optionButtonDeleteDilog" (click)="deleteEmployee()">Yes</button>
+        <button (click)="showDeleteDialog = !showDeleteDialog"
+          class="btn btn-secondary optionButtonDeleteDilog">No</button>
+      </div>
+    </div>
+  </div>
+</app-delete-dialog>

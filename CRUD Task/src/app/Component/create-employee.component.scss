@@ -1,0 +1,98 @@
+
+
+$MainColor: #6c757d;
+
+* {
+  box-sizing: border-box;
+}
+
+ .container {
+  border-radius: 5px 5px 0 0;
+   margin-top: 100px;
+ }
+.nameDiv {
+  padding: 0;
+}
+
+
+.employeeName {
+  background-color: $MainColor;
+  color: #FFF;
+  padding: 15px;
+  margin: 0px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+.saveButton {
+    margin: 6px 0px 5px 0px;
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    background-color: #00838f;
+}
+
+.LabelName {
+  margin: 5px 0 2px 0;
+}
+
+
+.labelTitleRadioButton {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* end for radio*/
+
+/* start stylee span for email radio button */
+.spanForRadioButton {
+  margin-right: 10px;
+}
+/* End stylee span for email radio button */
+
+/* Start div to middle Radio Button Group*/
+.divMiddleRadioButtonGroup {
+  text-align: center;
+}
+/* End div to middle Radio Button Group*/
+
+/* Start dropdown list style*/
+select {
+  border: none;
+  border-bottom: 2px solid gray;
+  border-radius: 0;
+}
+/* End dropdown list style*/
+
+.divForRadio {
+  border: 1px solid #e1dbdb;
+  border-radius: 4px;
+  padding:  5px 10px;
+}
+
+/*Start style input filed*/
+input[type="text"] {
+  border: none;
+  border-bottom: 2px solid $MainColor;
+  border-radius: 0;
+}
+/*End style input filed*/
+
+
+
+/*start style input on focus*/
+.form-control:focus {
+  box-shadow: 0px 1px 1px rgba(224, 248, 3, 0.075) inset, 0px 0px 8px rgba(100, 115, 255, 0.5);
+}
+/*End style input on focus*/
+
+
+
+/*start style alert danger for error message*/
+.alert-danger {
+  padding: 10px;
+}
+/*End style alert danger for error message*/
+

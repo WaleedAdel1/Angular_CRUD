@@ -1,0 +1,278 @@
+
+<div class="container">
+
+  <form #employeeForm="ngForm"
+        (ngSubmit)="saveEmployee()">
+
+    <div class="row">
+<div class="col-md-3 col-1"></div>
+<div class="col-md-6 col-10">
+
+      <!-- Start Name Of Form -->
+      <div class="col-12 nameDiv">
+        <h6 class="employeeName">
+          {{formTitle}}
+        </h6>
+      </div>
+      <!-- End Name Of Form -->
+
+      <div class="col-12">
+
+        <!-- Start Full Name Input  -->
+        <div class="input-field">
+          <input  type="text"
+                  class="validate"
+                  id="name"
+                  name="name"
+                  [(ngModel)]="employee.name"
+                  minlength="4"
+                  required
+                  #name="ngModel">
+          <label for="name">
+            Full Name
+          </label>
+        </div>
+        <!-- End Full Name Input  -->
+
+        <!-- Start Full Name Input Validation Message -->
+        <div  *ngIf="name.invalid && (name.dirty || name.touched)"
+              class="alert alert-danger">
+          <div *ngIf="name.errors['required']">
+            Name is required.
+          </div>
+          <div *ngIf="name.errors['minlength']">
+            Name must be at least 4 litters long.
+          </div>
+        </div>
+        <!-- End Full Name Input Validation Message -->
+
+
+      <!-- Start div for radio button gender && contact Perference -->
+
+      <div class="row">
+          <div class="col-6 divMiddleRadioButtonGroup">
+          <!-- Start contact perferene -->
+          <label class="labelTitleRadioButton">
+            Contact Perference
+          </label>
+
+          <label>
+            <input  type="radio"
+                    checked="checked"
+                    value="Email"
+                    name="contactPerference"
+                    [(ngModel)]="employee.contactPerference"
+                    #contactPerference= "ngModel"
+                    required>
+            <span class="spanForRadioButton">
+              Email
+            </span>
+          </label>
+
+          <label>
+            <input  type="radio"
+                    value="Phone"
+                    name="contactPerference"
+                    [(ngModel)]="employee.contactPerference"
+                    #contactPerference= "ngModel"
+                    required>
+            <span>
+              Phone
+            </span>
+          </label>
+          <!-- End contact perferene -->
+
+          <!-- Start div for contact Perference error message  -->
+          <div  *ngIf="contactPerference.touched && contactPerference.invalid"
+                class="alert alert-danger">
+                Contact Perference is required.
+          </div>
+          <!-- End div for contact Perference error message  -->
+        </div> <!--End div of row for radio button-->
+
+
+      <div class="col-6 divMiddleRadioButtonGroup">
+          <label class="labelTitleRadioButton">
+            Gender
+          </label>
+
+            <label>
+              <input  type="radio"
+                      checked="checked"
+                      value="Male"
+                      name="gender"
+                      [(ngModel)]="employee.gender"
+                      #gender="ngModel"
+                      required>
+              <span class="spanForRadioButton">
+                Male
+              </span>
+            </label>
+
+            <label>
+              <input  type="radio"
+                      value="Female"
+                      name="gender"
+                      [(ngModel)]="employee.gender"
+                      #gender="ngModel"
+                      required>
+              <span>
+                Female
+              </span>
+            </label>
+
+            <!-- Start div for gender error message  -->
+            <div  *ngIf="gender.touched && gender.invalid"
+                  class="alert alert-danger">
+              Gender is required.
+            </div>
+            <!-- End div for gender error message  -->
+          </div>
+        </div>
+        <!-- End div for radio button gender && contact Perference -->
+
+
+        <!-- Start Email Input  -->
+        <div class="input-field">
+          <input  type="text"
+                  id="email"
+                  name="email"
+                  pattern="^[a-zA-Z0-9_.]+@[a-zA-Z0-9-]+.com$"
+                  [(ngModel)]="employee.email"
+                  class="validate"
+                  [required]="contactPerference.value=='Email'"
+                  #email="ngModel">
+          <label for="email">
+            Email
+          </label>
+        </div>
+        <!-- End Email Input  -->
+
+        <!-- Start Email Input Validation Message -->
+        <div  *ngIf="!!email.errors?.required"
+              class="alert alert-danger">
+          Email is required.
+        </div>
+        <div  *ngIf="!!email.errors?.pattern"
+              class="alert alert-danger">
+            Email is invalid, must contain @ and end with ".com"
+        </div>
+        <!-- End Email Input Validation Message -->
+
+
+        <!-- Start Phone Number Input  -->
+        <div class="input-field">
+          <input  type="text"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  [(ngModel)]="employee.phoneNumber"
+                  class="validate"
+                  #phoneNumber="ngModel"
+                  [required]="contactPerference.value=='Phone'">
+          <label for="phoneNumber">
+            Phone Number
+          </label>
+        </div>
+        <!-- End Phone Number Input  -->
+
+        <!-- Start Phone Number Input Validation Message -->
+        <div  *ngIf="!!phoneNumber.errors?.required"
+              class="alert alert-danger">
+              Phone Number is required.
+        </div>
+        <!-- End Phone Number Input Validation Message -->
+
+
+        <!-- start checkbox Is Active -->
+        <label>
+          <input  type="checkbox"
+                  name="isActive"
+                  [(ngModel)]="employee.isActive"
+                  #isActive="ngModel"
+                  class="filled-in">
+          <span>
+              Is Active
+          </span>
+        </label>
+      <!-- End checkbox Is Active -->
+
+      <!-- Start Phone Number Input Validation Message -->
+      <div  *ngIf="isActive.touched && !!isActive.errors?.required"
+            class="alert alert-danger">
+        Is Active is required.
+      </div>
+      <!-- End Phone Number Input Validation Message -->
+
+
+        <!-- start department dropdownlist -->
+        <div class="form-group">
+          <select   id="department"
+                    class="form-control"
+                    name="department"
+                    [(ngModel)]="employee.department"
+                    #department="ngModel"
+                    appSelectValidator="select">
+            <option value="select">
+              Select Department
+            </option>
+            <option *ngFor="let dept of departments"
+                    [value]="dept.id">
+                    {{dept.name}}
+            </option>
+          </select>
+        </div>
+        <!-- end department dropdownlist -->
+
+        <!-- Start Department dropdownlist Validation Message -->
+        <div  *ngIf="department.touched && !!department.errors?.defaultSelected"
+              class="alert alert-danger">
+          Department is required.
+        </div>
+        <!-- End Department dropdownlist Validation Message -->
+
+
+        <!-- start date Of Birth -->
+        <div class="row">
+          <div class="col s-12">
+            <div class=" form-group">
+              <label for="dateOfBirth">Date Of Birth </label>
+              <input type="text" bsDatepicker [bsConfig]="datePickerConfig" id="dateOfBirth" placeholder="Date Of Birth"
+                name="dateOfBirth" class="form-control" [(ngModel)]="employee.dateOfBirth" placement="right">
+            </div>
+          </div>
+        </div>
+        <!-- end date Of Birth  -->
+
+        <!-- Start PhotoPath -->
+        <div class="input-field">
+          <input type="text"  id="photoPath" name="photoPath" [(ngModel)]="employee.photoPath"
+          class="validate">
+          <label for="photoPath">Photo Path</label>
+        </div>
+        <!-- End PhotoPath -->
+
+        <!-- Start ShowPreview Button -->
+        <div class="form-group">
+          <button type="button" (click)="togglePhotoPreview()" class="btn btn-primary"
+          *ngIf="employee.photoPath !== '' && employee.photoPath !== null">
+            {{previewPhoto? "Hide ": "Show "}}Preview
+          </button>
+        </div>
+        <!-- End ShowPreview Button -->
+
+        <!-- Start Show Photo -->
+        <div class="form-group">
+          <img [src]="employee.photoPath" height="200" width="200"
+          *ngIf="previewPhoto && employee.photoPath !== '' && employee.photoPath !== null">
+        </div>
+        <!-- End Show Photo -->
+
+        <button type="submit" class="btn btn-primary saveButton" [disabled]="employeeForm.invalid">Save</button>
+      </div> <!-- End of col-7-->
+    </div>
+
+      <div class="col-md-3 col-1"></div>
+
+    </div> <!-- End of row-->
+  </form>
+</div> <!-- End of container-->

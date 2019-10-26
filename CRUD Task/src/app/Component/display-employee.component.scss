@@ -1,0 +1,51 @@
+.containerList {
+  width: 90%;
+  border: 1px solid gray;
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: 1px 2px 7px 6px #888888;
+}
+.imgOnDisplayList {
+  border-radius: 50%;
+  width: 50%;
+  margin-bottom: 2%;
+}
+.optionsButton {
+  width: 50px;
+  font-size: 10px;
+  margin-right: 3px;
+  padding-bottom: 35px;
+  padding-left: 14px;
+}
+
+
+
+
+
+/* Start style for dialog*/
+.imgOnDilaog {
+  border-radius: 50%;
+  width: 30%;
+  margin-bottom: 2%;
+}
+#ulOnDilog > li {
+  list-style-type: square;
+  margin: 0 0 0 20px;
+}
+#ulOnDilog li span {
+  font-weight: bold;
+}
+/* End style for dialog*/
+
+
+/* Start delete dialog*/
+h5 {
+  color: red;
+  margin: 20px 0;
+}
+
+
+.optionButtonDeleteDilog{
+  margin-right: 10px;
+    width: 75px;
+}
